@@ -1,6 +1,8 @@
 package com.example.concurrency.binarySearch.DemoSearch;
 
 import java.lang.annotation.Target;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 
 /**
  * Package:com.example.concurrency.binarySearch.DemoSearch
@@ -17,6 +19,13 @@ public class BinarySearchExt {
 		//int firstNum = getFirstNum(arr, 8);
 		//System.out.println(firstNum);
 		//System.out.println(getLastNum(arr, 8));
+
+		SoftReference<String> sr=new SoftReference<String>(new String("java"));
+		WeakReference<String> wr = new WeakReference<String>(new String("world"));
+		String s = sr.get();
+		System.out.println(s);
+		System.out.println(wr);
+
 	}
 
 	//获得第一个等于查找值得索引

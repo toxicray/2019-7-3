@@ -36,7 +36,7 @@ public class SemaphoreExample3 {
 					if(semaphore.tryAcquire(5, 1,TimeUnit.MINUTES)){
 						test(threadNum);
 						//释放许可
-						semaphore.release(20);
+						semaphore.release(5);
 					}
 				} catch (InterruptedException e) {
 					log.error("exception",e );
@@ -49,7 +49,7 @@ public class SemaphoreExample3 {
 	public static void test(int threadNum) throws InterruptedException {
 
 		log.info("{}",threadNum );
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 	}
 
 }

@@ -29,6 +29,17 @@ public class LockCondition {
 			reentrantLock.unlock();
 		}).start();
 		new Thread(()->{
+			try {
+				reentrantLock.lock();
+				log.info("wait signal1" );
+				condition.await();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			log.info("get signal1" );
+			reentrantLock.unlock();
+		}).start();
+		new Thread(()->{
 			reentrantLock.lock();
 			log.info("get lock" );//2
 			try {

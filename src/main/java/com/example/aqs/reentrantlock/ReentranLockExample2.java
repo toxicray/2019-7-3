@@ -28,7 +28,7 @@ public class ReentranLockExample2 {
 
 
 	//默认使用的是非公平锁
-	private  static final Lock lock=new ReentrantLock();
+	private  static final Lock lock=new ReentrantLock(false);
 
 	//tryLock
 

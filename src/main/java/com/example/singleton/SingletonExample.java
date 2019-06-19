@@ -12,7 +12,7 @@ public class SingletonExample {
 
 	}
 	//单例对象
-	public  static SingletonExample instance=null;
+	public  static volatile SingletonExample instance=null;
 
 
 

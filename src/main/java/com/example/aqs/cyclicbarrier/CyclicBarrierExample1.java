@@ -34,11 +34,6 @@ public class CyclicBarrierExample1 {
 				}
 			});
 		}
-
-
-
-
-
 	}
 	private static void race(int threadNum) throws Exception {
 		Thread.sleep(1000);

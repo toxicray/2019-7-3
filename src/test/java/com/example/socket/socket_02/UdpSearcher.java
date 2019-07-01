@@ -7,4 +7,7 @@ package com.example.socket.socket_02;
  * *Created in 2019/6/30  21:57
  **/
 public class UdpSearcher {
+	public static void main(String[] args) {
+
+	}
 }

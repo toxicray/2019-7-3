@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.service.TestService;
 import com.example.util.AcccessControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * Package:com.example.controller
@@ -21,6 +24,9 @@ public class LimitRateController {
 	@Autowired
 	private AcccessControl acccessControl;
 
+	@Autowired
+	private TestService testService;
+
 	@RequestMapping("access")
 	public String testRate(){
 		if (acccessControl.tryAcquire()){
@@ -33,4 +39,43 @@ public class LimitRateController {
 		}
 		return "fail"+new Date().toString();
 	}
+
+
+
+	@GetMapping("event")
+	public String testEvent(){
+
+		testService.listener1();
+		return "发布";
+	}
+
+
+	@GetMapping("async")
+	public String testAsync(){
+
+		try {
+			return testService.sayHello()+"1";
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "出错了";
+	}
+
+
+	@GetMapping("async1")
+	public String testAsync1(){
+
+		try {
+			Future<String> future = testService.asyncFunc();
+			return future.get();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "出错了";
+	}
+
+
+
 }

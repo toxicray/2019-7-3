@@ -7,6 +7,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * Package:com.example
@@ -15,7 +16,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * *Created in 2019/6/19  13:07
  **/
 
-
+@EnableAsync
 @SpringBootApplication
 @SpringBootConfiguration
 public class ConcuuApplication {
@@ -26,10 +27,6 @@ public class ConcuuApplication {
 	@Bean
 	public CacheKeyGenerator cacheKeyGenerator(){
 		return new LockKeyGenerator();
-	}
-	@Bean
-	public StringRedisTemplate stringRedisTemplate(){
-		return new StringRedisTemplate();
 	}
 
 

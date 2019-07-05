@@ -45,6 +45,10 @@ public class TestService {
 
 
 
+	public void testAspect(String str1, String str2) {
+
+
+	}
 }
 class Test{
 	private String code;

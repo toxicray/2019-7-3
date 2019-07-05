@@ -76,6 +76,13 @@ public class LimitRateController {
 		return "出错了";
 	}
 
+	@GetMapping("aspect")
+	public String testAspect(){
+		String str1="参数1";
+		String str2="参数2";
+		testService.testAspect(str1,str2);
+		return"请求成功!";
+	}
 
 
 }

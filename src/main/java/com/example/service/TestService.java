@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.annodemo.Anno1;
 import com.example.event.EventTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,8 +19,12 @@ import java.util.concurrent.Future;
  **/
 @Service
 public class TestService {
+
+
 	@Autowired
 	private ApplicationContext applicationContext;
+
+
 	@Async
 	public void listener1(){
 		applicationContext.publishEvent(new EventTest(new Test("2","2")));
@@ -44,10 +49,10 @@ public class TestService {
 
 
 
-
+	@Anno1
 	public void testAspect(String str1, String str2) {
 
-
+		System.out.println("service层执行了:"+str1+"-----"+str2);
 	}
 }
 class Test{

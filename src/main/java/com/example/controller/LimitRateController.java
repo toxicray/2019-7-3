@@ -3,10 +3,7 @@ package com.example.controller;
 import com.example.service.TestService;
 import com.example.util.AcccessControl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -64,7 +61,6 @@ public class LimitRateController {
 
 	@GetMapping("async1")
 	public String testAsync1(){
-
 		try {
 			Future<String> future = testService.asyncFunc();
 			return future.get();
@@ -76,13 +72,65 @@ public class LimitRateController {
 		return "出错了";
 	}
 
+
 	@GetMapping("aspect")
 	public String testAspect(){
 		String str1="参数1";
 		String str2="参数2";
-		testService.testAspect(str1,str2);
+		testService.testAspect("b","a");
 		return"请求成功!";
 	}
 
+	@PostMapping("enum")
+	public String testEnum(@RequestBody Student student){
 
+		System.out.println(student.toString());
+
+		return "发送json成功";
+	}
+
+
+
+}
+
+class Student{
+	private String name;
+	private genderEnum gender;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public genderEnum getGender() {
+		return gender;
+	}
+
+	public void setGender(genderEnum gender) {
+		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "Student{" +
+				"name='" + name + '\'' +
+				", gender=" + gender +
+				'}';
+	}
+}
+enum genderEnum{
+	MALE(1),FEMALE(0);
+
+	private Integer sex;
+
+	private genderEnum(int sex) {
+		this.sex=sex;
+	}
+
+	public Integer getSex() {
+		return sex;
+	}
 }

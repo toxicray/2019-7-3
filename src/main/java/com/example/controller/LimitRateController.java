@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dao.Test;
 import com.example.service.TestService;
 import com.example.util.AcccessControl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +26,21 @@ public class LimitRateController {
 	private TestService testService;
 
 	@RequestMapping("access")
-	public String testRate(){
-		if (acccessControl.tryAcquire()){
+	public String testRate() {
+		if (acccessControl.tryAcquire()) {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 
 			}
-			return "success"+new Date().toString();
+			return "success" + new Date().toString();
 		}
-		return "fail"+new Date().toString();
+		return "fail" + new Date().toString();
 	}
 
 
-
 	@GetMapping("event")
-	public String testEvent(){
+	public String testEvent() {
 
 		testService.listener1();
 		return "发布";
@@ -48,10 +48,10 @@ public class LimitRateController {
 
 
 	@GetMapping("async")
-	public String testAsync(){
+	public String testAsync() {
 
 		try {
-			return testService.sayHello()+"1";
+			return testService.sayHello() + "1";
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +60,7 @@ public class LimitRateController {
 
 
 	@GetMapping("async1")
-	public String testAsync1(){
+	public String testAsync1() {
 		try {
 			Future<String> future = testService.asyncFunc();
 			return future.get();
@@ -74,15 +74,16 @@ public class LimitRateController {
 
 
 	@GetMapping("aspect")
-	public String testAspect(){
-		String str1="参数1";
-		String str2="参数2";
-		testService.testAspect("b","a");
-		return"请求成功!";
+	public String testAspect() {
+		String str1 = "参数1";
+		String str2 = "参数2";
+		Test test = new Test("2", "2");
+		testService.testAspect("b", "a",test);
+		return "请求成功!";
 	}
 
 	@PostMapping("enum")
-	public String testEnum(@RequestBody Student student){
+	public String testEnum(@RequestBody Student student) {
 
 		System.out.println(student.toString());
 
@@ -90,10 +91,9 @@ public class LimitRateController {
 	}
 
 
-
 }
 
-class Student{
+class Student {
 	private String name;
 	private genderEnum gender;
 
@@ -121,13 +121,14 @@ class Student{
 				'}';
 	}
 }
-enum genderEnum{
-	MALE(1),FEMALE(0);
+
+enum genderEnum {
+	MALE(1), FEMALE(0);
 
 	private Integer sex;
 
 	private genderEnum(int sex) {
-		this.sex=sex;
+		this.sex = sex;
 	}
 
 	public Integer getSex() {

@@ -48,6 +48,7 @@ public class AspectTest {
 
 		System.out.println("----------------------------");
 		System.out.println(anno1.name());
+		System.out.println(anno1.test());
 
 		System.out.println("Logger类中的aroundPringLog方法开始记录日志了。。。前置");
 

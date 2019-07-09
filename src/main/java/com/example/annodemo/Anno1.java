@@ -16,4 +16,6 @@ public @interface Anno1 {
 
 	String name() default "我是谁";
 
+	String test() default "";
+
 }

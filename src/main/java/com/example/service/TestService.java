@@ -52,8 +52,9 @@ public class TestService {
 
 
 	@Anno1(test = "#{test.code}")
-	public void testAspect(String str1, String str2, Test test) {
+	public String testAspect(String str1, String str2, Test test) {
 
 		System.out.println("service层执行了:"+str1+"-----"+str2);
+		return "service方法执行了!";
 	}
 }

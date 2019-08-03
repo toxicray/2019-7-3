@@ -26,7 +26,6 @@ public class ExceptionTestController {
 	public String testException1(){
 		if (true){
 			throw new ValidateException("数据格式错误");
-
 		}
 		return "抛出异常";
 	}

@@ -18,8 +18,8 @@ public class MyList {
 		node.next.next.next=new ListNode<Integer>(4);
 		node.next.next.next.next=new ListNode<Integer>(5);
 		node.next.next.next.next.next=new ListNode<Integer>(6);
-		int result=getNumK(node,3);
-		System.out.println(result);
+		//int result=getNumK(node,3);
+		//System.out.println(result);
 		System.out.println(GetKnode(node,3 ));
 	}
 

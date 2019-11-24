@@ -1,4 +1,4 @@
-package com.example.semaphore;
+package com.example.aqs.semaphore;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,9 +32,9 @@ public class SemaphoreExample2 {
 			executorService.execute(()->{
 				try {
 					//许可数
-					semaphore.acquire(20);
+					semaphore.acquire(10);
 					test(threadNum);
-					semaphore.release(20);
+					semaphore.release(5);
 				} catch (InterruptedException e) {
 					log.error("exception",e );
 				}

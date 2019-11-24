@@ -1,4 +1,4 @@
-package com.example.semaphore;
+package com.example.aqs.semaphore;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,26 +16,22 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class SemaphoreExample3 {
 
-
 	private final static int threadCount=200;
 
-
-
 	public static void main(String[] args) throws InterruptedException {
-
 
 		ExecutorService executorService = Executors.newCachedThreadPool();
 		final Semaphore semaphore=new Semaphore(20);
 
 		for (int i = 0; i < threadCount-5; i++) {
 			final int threadNum=i;
-
 			executorService.execute(()->{
 				try {
 					//许可数
-					if(semaphore.tryAcquire(5, 1,TimeUnit.MINUTES)){
+					if(semaphore.tryAcquire(5, 5,TimeUnit.SECONDS)){
 						test(threadNum);
 						//释放许可
+						//semaphore.release(10);
 						semaphore.release(5);
 					}
 				} catch (InterruptedException e) {
@@ -49,7 +45,7 @@ public class SemaphoreExample3 {
 	public static void test(int threadNum) throws InterruptedException {
 
 		log.info("{}",threadNum );
-		Thread.sleep(4000);
+		Thread.sleep(1000);
 	}
 
 }

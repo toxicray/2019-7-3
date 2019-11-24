@@ -25,7 +25,6 @@ public class CyclicBarrierExample1 {
 			final int threadNum=i;
 			Thread.sleep(1000);
 			executorService.execute(()->{
-
 				try {
 					race(threadNum);
 				} catch (Exception e) {

@@ -18,6 +18,6 @@ public class LongEventHandler implements EventHandler<LongEvent> {
 			**/
 	@Override
 	public void onEvent(LongEvent longEvent, long l, boolean b) throws Exception {
-		System.out.println(longEvent.getValue());
+		System.out.println(longEvent.getValue()+"数据消费!");
 	}
 }

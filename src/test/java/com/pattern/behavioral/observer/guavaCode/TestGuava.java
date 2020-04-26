@@ -17,5 +17,4 @@ public class TestGuava {
 		eventBus.register(guavaEvent);
 		eventBus.post("post内容");
 	}
-
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadFactory;
 public class CustomFactory implements ThreadFactory {
 	@Override
 	public Thread newThread(Runnable r) {
-		Thread thread=new Thread("ray");
+		Thread thread=new Thread(r,"ray");
 		return thread;
 	}
 }

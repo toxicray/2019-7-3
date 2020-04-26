@@ -14,19 +14,14 @@ import java.util.concurrent.Semaphore;
  * *version:...
  * *Created in 2019/5/17  0:11
  **/
-@Slf4j
+
 public class ConcurrencyTest {
-
 	//请求总数
-	public static int clienTotal=5000;
-
+	public static int clienTotal=10000;
 	public static int threadTotal=200;
-
-
 	public static int count =0;
-
-
 	public static void main(String[] args) throws InterruptedException {
+
 		ExecutorService threadPool= Executors.newCachedThreadPool();
 		//信号量
 		final Semaphore semaphore=new Semaphore(threadTotal);
@@ -42,23 +37,16 @@ public class ConcurrencyTest {
 					semaphore.release();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-					log.error("exception",e);
 				}
 				countDownLatch.countDown();
 			});
 		}
 		countDownLatch.await();
+		System.out.println(count);
 		threadPool.shutdown();
-		log.info("count:{}",count);
-
 	}
 
-
-	public static void add(){
+	public synchronized static void add(){
 		count++;
 	}
-
-
-
-
 }

@@ -1,64 +1,70 @@
-package com.example.concurrency.countDemo.atomic;
-
-import lombok.extern.slf4j.Slf4j;
+package com.example.concurrency.chapter3;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.LongAdder;
 
 /**
- * Package:com.example.concurrency.countDemo.atomic
+ * Package:com.example.concurrency.chapter3
  * *Author:ray
  * *version:...
- * *Created in 2019/5/17  0:26
+ * *Created in 2020/1/17  19:31
  **/
-
-public class CountExample1 {
+public class TestSynLock {
 	//请求总数
-	public static int clienTotal=5000;
-
+	public static int clienTotal=10000;
 	public static int threadTotal=200;
-
-
-	//publish static AtomicInteger count = new AtomicInteger(0);
-	//publish static AtomicLong count = new AtomicLong(0);
-	public static LongAdder count = new LongAdder();
-
+	public static int count =0;
 
 	public static void main(String[] args) throws InterruptedException {
+
 		ExecutorService threadPool= Executors.newCachedThreadPool();
 		//信号量
 		final Semaphore semaphore=new Semaphore(threadTotal);
 		//锁
 		final CountDownLatch countDownLatch=new CountDownLatch(clienTotal);
+		TestSynLock demo=new TestSynLock();
 
 		for (int i = 0; i < clienTotal; i++) {
+			final int index=i;
 			threadPool.execute(()->
 			{
 				try {
 					semaphore.acquire();
-					add();
+					//if (index%2==0){
+					//    demo.add2();
+					//}else{
+					//	demo.add1();
+					//}
+					demo.add3();
 					semaphore.release();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-
 				}
 				countDownLatch.countDown();
 			});
 		}
 		countDownLatch.await();
+		System.out.println(count);
 		threadPool.shutdown();
 	}
-
-
-	public static void add(){
-
-		//count.incrementAndGet();
-		//count.getAndIncrement();
-		count.increment();
+	public synchronized static void add(){
+		count++;
+	}
+	public synchronized void add1(){
+		count++;
+	}
+	public synchronized void add2(){
+		count++;
+	}
+	public void add3(){
+		Object object=new Object();
+		synchronized (object){
+			count++;
+		}
+	}
+	public void add4(){
+		count++;
 	}
 }

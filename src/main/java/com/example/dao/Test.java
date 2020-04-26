@@ -1,5 +1,8 @@
 package com.example.dao;
 
+import java.text.MessageFormat;
+import java.time.LocalTime;
+
 /**
  * Package:com.example.dao
  * *Author:ray
@@ -37,5 +40,28 @@ public class Test{
 				"code='" + code + '\'' +
 				", score='" + score + '\'' +
 				'}';
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+
+		LocalTime now = LocalTime.now();
+		System.out.println(now.getHour());
+
+		printMethod(1);
+		int result = returnMethod(2);
+
+		for (int i = 0; i < 10000; i++) {
+			returnMethod(5);
+		}
+
+		Thread.sleep(10*100000);
+	}
+
+	private static int returnMethod(int i) {
+		return i;
+	}
+
+	private static void printMethod(int i) {
+		System.out.println(1);
 	}
 }

@@ -24,7 +24,5 @@ public class MainTest {
 		acourse.makeCourse();
 		Acourse b = new FECourse(true);
 		b.makeCourse();
-
-
 	}
 }

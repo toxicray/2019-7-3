@@ -14,7 +14,6 @@ public class PatternDesign extends Acourse {
 
 	@Override
 	protected boolean needWriteArticle() {
-
 		return true;
 	}
 }

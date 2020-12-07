@@ -12,9 +12,18 @@ import java.util.concurrent.CountDownLatch;
 public class CountDownLatch1 {
 
 	public static void main(String[] args) {
-		int num =1;
-		num<<=1;
-		System.out.println(num);
-		ArrayList<Integer> list = new ArrayList<>();
+
+	}
+	public static void test(){
+		if (true){
+			throw new Exception();
+		}
+	}
+	public static void fail(String message) {
+		if (message == null) {
+			throw new Exception();
+		} else {
+			throw new Exception(message);
+		}
 	}
 }

@@ -16,14 +16,14 @@ public class CountDownLatch1 {
 	}
 	public static void test(){
 		if (true){
-			throw new Exception();
+//			throw new Exception();
 		}
 	}
 	public static void fail(String message) {
 		if (message == null) {
-			throw new Exception();
+//			throw new Exception();
 		} else {
-			throw new Exception(message);
+//			throw new Exception(message);
 		}
 	}
 }

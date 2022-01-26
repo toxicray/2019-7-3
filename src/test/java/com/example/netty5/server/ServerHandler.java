@@ -10,6 +10,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * *Created in 2019/6/23  1:23
  **/
 public class ServerHandler extends SimpleChannelInboundHandler<String>{
+
 	@Override
 	protected void channelRead0(ChannelHandlerContext channelHandlerContext, String str) throws Exception {
 		System.out.println(str);
@@ -27,4 +28,5 @@ public class ServerHandler extends SimpleChannelInboundHandler<String>{
 		System.out.println("channel InActive");
 		super.channelInactive(ctx);
 	}
+
 }

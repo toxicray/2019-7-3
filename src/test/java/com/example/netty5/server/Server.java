@@ -44,9 +44,6 @@ public class Server {
 			bootStrap.childOption(ChannelOption.SO_KEEPALIVE,true );//socketChannel的设置,底层socket检查连接,可能会有超时关闭连接,清除一些死链接
 			bootStrap.childOption(ChannelOption.TCP_NODELAY,true );//tcp的底层优化,关闭延迟发送的缓冲
 
-
-
-
 			//绑定端口
 			ChannelFuture future = bootStrap.bind(10101);
 			//等待服务端关闭
